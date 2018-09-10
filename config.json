@@ -1,6 +1,793 @@
 [
   {
     "enable": false,
+    "out": "pics/planets/mercury.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": -0.1, "cy": 1.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": 1.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 7},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {
+              "intersect": [
+                {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.2}},
+                {"complement": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.15}}}
+              ]
+            },
+            {
+              "intersect": [
+                {"circle": {"cx": 0.5, "cy": 0.15, "r": 0.2}},
+                {"complement": {"circle": {"cx": 0.5, "cy": 0.15, "r": 0.15}}},
+                {
+                  "polygon": {
+                    "points": [
+                      [0.3, 0.35],
+                      [0.7, 0.35],
+                      [0.7, 0.15],
+                      [0.3, 0.15]
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "polygon": {
+                "points": [
+                  [0.475, 0.9],
+                  [0.525, 0.9],
+                  [0.525, 0.8],
+                  [0.675, 0.8],
+                  [0.675, 0.75],
+                  [0.525, 0.75],
+                  [0.525, 0.675],
+                  [0.475, 0.675],
+                  [0.475, 0.75],
+                  [0.325, 0.75],
+                  [0.325, 0.8],
+                  [0.475, 0.8]
+                ]
+              }
+            }
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.6,
+        "absorption": {"rgb": {"r": 6.6, "g": 2.4, "b": 0.5}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/srivatsa.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": -0.1, "cy": 1.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": 1.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 7},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {
+              "polygon": {
+                "points": [
+                  [0.1, 0.82],
+                  [0.26, 0.82],
+                  [0.26, 0.58],
+                  [0.42, 0.58],
+                  [0.42, 0.82],
+                  [0.5, 0.9],
+                  [0.82, 0.9],
+                  [0.82, 0.74],
+                  [0.58, 0.74],
+                  [0.58, 0.58],
+                  [0.82, 0.58],
+                  [0.9, 0.5],
+                  [0.9, 0.18],
+                  [0.74, 0.18],
+                  [0.74, 0.42],
+                  [0.58, 0.42],
+                  [0.58, 0.18],
+                  [0.5, 0.1],
+                  [0.18, 0.1],
+                  [0.18, 0.26],
+                  [0.42, 0.26],
+                  [0.42, 0.42],
+                  [0.18, 0.42],
+                  [0.1, 0.5]
+                ]
+              }
+            },
+            {"circle": {"cx": 0.18, "cy": 0.82, "r": 0.08}},
+            {"circle": {"cx": 0.82, "cy": 0.82, "r": 0.08}},
+            {"circle": {"cx": 0.82, "cy": 0.18, "r": 0.08}},
+            {"circle": {"cx": 0.18, "cy": 0.18, "r": 0.08}},
+            {"circle": {"cx": 0.5, "cy": 0.82, "r": 0.08}},
+            {"circle": {"cx": 0.82, "cy": 0.5, "r": 0.08}},
+            {"circle": {"cx": 0.5, "cy": 0.18, "r": 0.08}},
+            {"circle": {"cx": 0.18, "cy": 0.5, "r": 0.08}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.6,
+        "absorption": {"rgb": {"r": 0, "g": 0, "b": 6}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/delta.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": -0.1, "cy": 1.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": 1.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 7},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {
+              "intersect": [
+                {"circle": {"cx": 0.5, "cy": 0.65, "r": 0.25}},
+                {"complement": {"circle": {"cx": 0.5, "cy": 0.65, "r": 0.15}}}
+              ]
+            },
+            {
+              "polygon": {
+                "points": [
+                  [0.59, 0.53],
+                  [0.65, 0.45],
+                  [0.29, 0.18],
+                  [0.25, 0.275]
+                ]
+              }
+            },
+            {
+              "polygon": {
+                "points": [
+                  [0.25, 0.275],
+                  [0.7, 0.275],
+                  [0.7, 0.175],
+                  [0.3, 0.175],
+                  [0.25, 0.225]
+                ]
+              }
+            },
+            {"circle": {"cx": 0.7, "cy": 0.225, "r": 0.05}},
+            {"circle": {"cx": 0.3, "cy": 0.225, "r": 0.05}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.6,
+        "absorption": {"rgb": {"r": 5, "g": 0.5, "b": 0.5}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/wing.png",
+    "width": 2880,
+    "height": 2400,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.3, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": -0.1, "cy": 1.1, "r": 0.05}},
+            {"circle": {"cx": 1.3, "cy": 1.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 7},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "intersect": [
+            {
+              "polygon": {
+                "points": [
+                  [0.04, 0.78],
+                  [1.16, 0.78],
+                  [0.8, 0.3],
+                  [0.4, 0.3]
+                ]
+              }
+            },
+            {"complement": {"circle": {"cx": 0.6, "cy": 1.2, "r": 0.7}}},
+            {"complement": {"circle": {"cx": 0.6, "cy": 0.3, "r": 0.2}}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 2.4,
+        "absorption": {"grey": 3}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/phi.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": -0.1, "cy": 1.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": 1.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 7},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {
+              "polygon": {
+                "points": [
+                  [0.45, 0.8],
+                  [0.55, 0.8],
+                  [0.55, 0.3],
+                  [0.45, 0.3]
+                ]
+              }
+            },
+            {
+              "intersect": [
+                {"circle": {"cx": 0.6, "cy": 0.3, "r": 0.15}},
+                {"complement": {"circle": {"cx": 0.6, "cy": 0.3, "r": 0.05}}},
+                {
+                  "complement": {
+                    "polygon": {
+                      "points": [
+                        [0.55, 0.55],
+                        [0.75, 0.55],
+                        [0.75, 0.3],
+                        [0.55, 0.3]
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "intersect": [
+                {"circle": {"cx": 0.5, "cy": 0.3, "r": 0.25}},
+                {"complement": {"circle": {"cx": 0.5, "cy": 0.3, "r": 0.15}}},
+                {
+                  "complement": {
+                    "polygon": {
+                      "points": [
+                        [0.5, 0.3],
+                        [0.75, 0.3],
+                        [0.75, 0.05],
+                        [0.3, 0.05],
+                        [0.3, 0.15]
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {"circle": {"cx": 0.5, "cy": 0.8, "r": 0.05}},
+            {"circle": {"cx": 0.34, "cy": 0.18, "r": 0.05}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.6,
+        "absorption": {"rgb": {"r": 5, "g": 0.5, "b": 0.5}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/directional_light.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {"directional_light": {"d": 1, "nx": -2, "ny": -1}},
+        "emissive": {"grey": 15},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {"polygon": {"rectangle": {"cx": 0.25, "cy": 0.5, "e": 0, "sx": 0.05, "sy": 0.25}}},
+            {"polygon": {"rectangle": {"cx": 0.75, "cy": 0.5, "e": 0, "sx": 0.05, "sy": 0.25}}},
+            {
+              "polygon": {"rectangle": {"cx": 0.375, "cy": 0.5, "e": 26.56505118, "sx": 0.05, "sy": 0.2795084971874737}}
+            },
+            {
+              "polygon": {
+                "rectangle": {"cx": 0.625, "cy": 0.5, "e": -26.56505118, "sx": 0.05, "sy": 0.2795084971874737}
+              }
+            },
+            {"circle": {"cx": 0.25, "cy": 0.25, "r": 0.05}},
+            {"circle": {"cx": 0.75, "cy": 0.25, "r": 0.05}},
+            {"circle": {"cx": 0.25, "cy": 0.75, "r": 0.05}},
+            {"circle": {"cx": 0.75, "cy": 0.75, "r": 0.05}},
+            {"circle": {"cx": 0.5, "cy": 0.75, "r": 0.05}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 3, "g": 3, "b": 3}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/m.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 4,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": -0.1, "cy": 1.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": 1.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 7},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {"polygon": {"rectangle": {"cx": 0.25, "cy": 0.5, "e": 0, "sx": 0.05, "sy": 0.25}}},
+            {"polygon": {"rectangle": {"cx": 0.75, "cy": 0.5, "e": 0, "sx": 0.05, "sy": 0.25}}},
+            {
+              "polygon": {"rectangle": {"cx": 0.375, "cy": 0.5, "e": 26.56505118, "sx": 0.05, "sy": 0.2795084971874737}}
+            },
+            {
+              "polygon": {
+                "rectangle": {"cx": 0.625, "cy": 0.5, "e": -26.56505118, "sx": 0.05, "sy": 0.2795084971874737}
+              }
+            },
+            {"circle": {"cx": 0.25, "cy": 0.25, "r": 0.05}},
+            {"circle": {"cx": 0.75, "cy": 0.25, "r": 0.05}},
+            {"circle": {"cx": 0.25, "cy": 0.75, "r": 0.05}},
+            {"circle": {"cx": 0.75, "cy": 0.75, "r": 0.05}},
+            {"circle": {"cx": 0.5, "cy": 0.75, "r": 0.05}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 3, "g": 3, "b": 3}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/union.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 10},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": 0.35, "cy": 0.5, "r": 0.2}},
+            {"circle": {"cx": 0.65, "cy": 0.5, "r": 0.2}},
+            {"circle": {"cx": 0.5, "cy": 0.3, "r": 0.2}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 0.5, "g": 0.2, "b": 0.2}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/candle.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "intersect": [
+            {"circle": {"cx": 0.4, "cy": 0.3, "r": 0.12}},
+            {"circle": {"cx": 0.6, "cy": 0.3, "r": 0.12}},
+            {"plane": {"px": 0.5, "py": 0.35, "nx": 0, "ny": 1}}
+          ]
+        },
+        "emissive": {"grey": 1.9},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"rgb": {"r": 2, "g": 6, "b": 16}}
+      },
+      {
+        "shape": {
+          "polygon": {
+            "points": [
+              [0.45, 0.9],
+              [0.55, 0.9],
+              [0.55, 0.38],
+              [0.45, 0.38]
+            ]
+          }
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "intersect": [
+            {"circle": {"cx": 0.2, "cy": 0.5, "r": 0.12}},
+            {"circle": {"cx": 0.4, "cy": 0.5, "r": 0.12}},
+            {"plane": {"px": 0.5, "py": 0.55, "nx": 0, "ny": 1}}
+          ]
+        },
+        "emissive": {"grey": 1.9},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"rgb": {"r": 2, "g": 6, "b": 16}}
+      },
+      {
+        "shape": {
+          "polygon": {
+            "points": [
+              [0.25, 0.9],
+              [0.35, 0.9],
+              [0.35, 0.58],
+              [0.25, 0.58]
+            ]
+          }
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "intersect": [
+            {"circle": {"cx": 0.6, "cy": 0.4, "r": 0.12}},
+            {"circle": {"cx": 0.8, "cy": 0.4, "r": 0.12}},
+            {"plane": {"px": 0.5, "py": 0.45, "nx": 0, "ny": 1}}
+          ]
+        },
+        "emissive": {"grey": 1.9},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"rgb": {"r": 2, "g": 6, "b": 16}}
+      },
+      {
+        "shape": {
+          "polygon": {
+            "points": [
+              [0.65, 0.9],
+              [0.75, 0.9],
+              [0.75, 0.48],
+              [0.65, 0.48]
+            ]
+          }
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"black": true}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/red_star.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 4,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {
+          "grey": 10.0
+        },
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {"polygon": {"star": {"cx": 0.5, "cy": 0.5, "r": 0.3, "n": 5, "e": 90}}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 1, "g": 10, "b": 10}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/flower.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.12}},
+        "emissive": {"grey": 1},
+        "reflectivity": 0,
+        "eta": 1,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "intersect": [
+            {"complement": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.25}}},
+            {"polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.4, "n": 3, "e": -90}}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 5, "g": 0.5, "b": 0.5}}
+      },
+      {
+        "shape": {
+          "intersect": [
+            {"complement": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.25}}},
+            {"polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.4, "n": 3, "e": 90}}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 0.5, "g": 5, "b": 0.5}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/joy_endless.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.12}},
+        "emissive": {"grey": 1},
+        "reflectivity": 0,
+        "eta": 1,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {"polygon": {"regular": {"cx": 0.5, "cy": 0.21, "r": 0.13, "n": 3, "e": 90}}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 5, "g": 0.9, "b": 0.5}}
+      },
+      {
+        "shape": {"polygon": {"regular": {"cx": 0.21, "cy": 0.5, "r": 0.15, "n": 4, "e": 45}}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 0.5, "g": 5, "b": 0.5}}
+      },
+      {
+        "shape": {"circle": {"cx": 0.79, "cy": 0.5, "r": 0.13}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 0.5, "g": 5, "b": 5}}
+      },
+      {
+        "shape": {
+          "union": [
+            {"polygon": {"rectangle": {"cx": 0.5, "cy": 0.79, "e": 45, "sx": 0.13, "sy": 0.04}}},
+            {"polygon": {"rectangle": {"cx": 0.5, "cy": 0.79, "e": -45, "sx": 0.13, "sy": 0.04}}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 5, "g": 5, "b": 0.5}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/ring.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 10},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "intersect": [
+            {"complement": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.1}}},
+            {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.2}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 0.5, "g": 5, "b": 5}}
+      }
+    ]
+  },
+  {
+    "enable": false,
+    "out": "pics/tree.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "polygon": {
+            "points": [
+              [0.1, 0.1],
+              [0.1, 0.5],
+              [0.15, 0.5],
+              [0.15, 0.1]
+            ]
+          }
+        },
+        "emissive": {"grey": 1.6},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "polygon": {
+            "points": [
+              [0.9, 0.9],
+              [0.9, 0.6],
+              [0.85, 0.6],
+              [0.85, 0.9]
+            ]
+          }
+        },
+        "emissive": {"grey": 1.2},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {"polygon": {"regular": {"cx": 0.5, "cy": 0.25, "r": 0.2, "n": 3, "e": 90}}},
+            {"polygon": {"regular": {"cx": 0.5, "cy": 0.45, "r": 0.2, "n": 3, "e": 90}}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 5, "g": 0.5, "b": 5}}
+      },
+      {
+        "shape": {
+          "polygon": {
+            "points": [
+              [0.475, 0.5],
+              [0.475, 0.9],
+              [0.525, 0.9],
+              [0.525, 0.5]
+            ]
+          }
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 1, "g": 4, "b": 8}}
+      }
+    ]
+  },
+  {
+    "enable": false,
     "out": "pics/test.png",
     "width": 2048,
     "height": 2048,
@@ -18,115 +805,75 @@
             ]
           }
         },
-        "emissive": {
-          "grey": 1.2
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "emissive": {"grey": 1.2},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
         "shape": {
           "polygon": {
             "points": [
-              [0.1, 0.2],
+              [0.4, 0.2],
               [0.1, 0.9],
               [0.9, 0.9]
             ]
           }
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 2.0, "g": 2.0, "b": 0.5}
-        }
+        "absorption": {"rgb": {"r": 2, "g": 2, "b": 0.5}}
       }
     ]
   },
   {
-    "enable": true,
+    "enable": false,
     "out": "pics/sample.png",
-    "width": 512,
-    "height": 512,
-    "stratification": 256,
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
     "max_depth": 3,
     "scenes": [
       {
-        "shape": {
-          "circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}
-        },
-        "emissive": {
-          "grey": 10.0
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "shape": {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+        "emissive": {"grey": 10},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
-        "shape": {
-          "circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}
-        },
-        "emissive": {
-          "grey": 10.0
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "shape": {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+        "emissive": {"grey": 10},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
-        "shape": {
-          "circle": {"cx": 0.2, "cy": 0.5, "r": 0.1}
-        },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "shape": {"circle": {"cx": 0.2, "cy": 0.5, "r": 0.1}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 5.0, "g": 5.0, "b": 1.0}
-        }
+        "absorption": {"rgb": {"r": 5, "g": 5, "b": 1}}
+      },
+      {
+        "shape": {"polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.1, "n": 3, "e": 0}}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 5, "g": 1, "b": 5}}
       },
       {
         "shape": {
-          "polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.1, "n": 3}}
+          "intersect": [
+            {"circle": {"cx": 0.8, "cy": 0.5, "r": 0.1}},
+            {"plane": {"px": 0.8, "py": 0.5, "nx": 0, "ny": 1}}
+          ]
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 5.0, "g": 1.0, "b": 5.0}
-        }
-      },
-      {
-        "shape": {
-          "intersect": {
-            "a": {
-              "circle": {"cx": 0.8, "cy": 0.5, "r": 0.1}
-            },
-            "b": {
-              "plane": {"px": 0.8, "py": 0.5, "nx": 0.0, "ny": 1.0}
-            }
-          }
-        },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
-        "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 1.0, "g": 5.0, "b": 5.0}
-        }
+        "absorption": {"rgb": {"r": 1, "g": 5, "b": 5}}
       }
     ]
   }

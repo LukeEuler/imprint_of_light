@@ -1,5 +1,3 @@
-use std;
-
 #[derive(Clone, Copy)]
 pub struct Color {
     pub r: f64,
@@ -9,11 +7,7 @@ pub struct Color {
 
 impl Color {
     pub fn grey(c: f64) -> Self {
-        Self {
-            r: c,
-            g: c,
-            b: c,
-        }
+        Self { r: c, g: c, b: c }
     }
 
     pub fn black() -> Self {
@@ -63,7 +57,8 @@ impl std::ops::Mul<f64> for Color {
 
 impl std::iter::Sum for Color {
     fn sum<I>(iter: I) -> Color
-        where I: Iterator<Item=Color>
+    where
+        I: Iterator<Item = Color>,
     {
         iter.fold(Color::black(), std::ops::Add::add)
     }
