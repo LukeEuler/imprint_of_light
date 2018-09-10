@@ -11,7 +11,7 @@ pub struct Intersection {
 }
 
 pub trait Shape {
-    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Option<Intersection>;
+    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection>;
     fn is_inside(&self, p: (f64, f64)) -> bool;
 }
 
@@ -23,36 +23,42 @@ pub struct Circle {
 }
 
 impl Shape for Circle {
-    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Option<Intersection> {
+    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection> {
         let a = d.0 * d.0 + d.1 * d.1;
         let ocx = p.0 - self.cx;
         let ocy = p.1 - self.cy;
         let b = 2.0 * (ocx * d.0 + ocy * d.1);
         let c = ocx * ocx + ocy * ocy - self.r * self.r;
         let delta = b * b - 4.0 * a * c;
+        let mut result: Vec<Intersection> = Vec::new();
         if delta < 0.0 {
-            None
+            result
         } else {
             let t1 = (-b - delta.sqrt()) / (2.0 * a);
             let t2 = (-b + delta.sqrt()) / (2.0 * a);
-            let t = if t1 > EPSILON {
-                t1
-            } else {
-                t2
-            };
-            if t > EPSILON {
-                let x = p.0 + d.0 * t;
-                let y = p.1 + d.1 * t;
+            if t1 > EPSILON {
+                let x = p.0 + d.0 * t1;
+                let y = p.1 + d.1 * t1;
                 let nx = x - self.cx;
                 let ny = y - self.cy;
                 let len = (nx * nx + ny * ny).sqrt();
-                Some(Intersection {
+                result.push(Intersection {
                     point: (x, y),
                     normal: (nx / len, ny / len),
-                })
-            } else {
-                None
+                });
             }
+            if t2 > EPSILON {
+                let x = p.0 + d.0 * t2;
+                let y = p.1 + d.1 * t2;
+                let nx = x - self.cx;
+                let ny = y - self.cy;
+                let len = (nx * nx + ny * ny).sqrt();
+                result.push(Intersection {
+                    point: (x, y),
+                    normal: (nx / len, ny / len),
+                });
+            }
+            result
         }
     }
 
@@ -72,21 +78,21 @@ pub struct Plane {
 }
 
 impl Shape for Plane {
-    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Option<Intersection> {
+    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection> {
+        let mut result: Vec<Intersection> = Vec::new();
         let a = d.0 * self.nx + d.1 * self.ny;
         if a.abs() < EPSILON {
-            None
+            result
         } else {
             let b = (self.px - p.0) * self.nx + (self.py - p.1) * self.ny;
             let t = b / a;
             if t > EPSILON {
-                Some(Intersection {
+                result.push(Intersection {
                     point: (p.0 + d.0 * t, p.1 + d.1 * t),
                     normal: (self.nx, self.ny),
-                })
-            } else {
-                None
+                });
             }
+            result
         }
     }
 
@@ -127,8 +133,8 @@ impl Polygon {
 }
 
 impl Shape for Polygon {
-    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Option<Intersection> {
-        let mut res: Option<Intersection> = None;
+    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection> {
+        let mut result: Vec<Intersection> = Vec::new();
         for i in 0..self.points.len() {
             let a = self.points[i];
             let b = if i + 1 == self.points.len() {
@@ -153,25 +159,15 @@ impl Shape for Polygon {
                     let c2 = (a.0 - p.0) * nx + (a.1 - p.1) * ny;
                     let t = c2 / c1;
                     if t > EPSILON {
-                        let intersect = Intersection {
+                        result.push(Intersection {
                             point: (p.0 + d.0 * t, p.1 + d.1 * t),
                             normal: (nx, ny),
-                        };
-                        res = match res {
-                            Some(i) => {
-                                if distance(p, intersect.point) < distance(p, i.point) {
-                                    Some(intersect)
-                                } else {
-                                    Some(i)
-                                }
-                            }
-                            None => Some(intersect),
-                        }
+                        });
                     }
                 }
             }
         }
-        res
+        result
     }
 
     fn is_inside(&self, p: (f64, f64)) -> bool {
@@ -201,20 +197,19 @@ pub struct UnionShape {
 }
 
 impl Shape for UnionShape {
-    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Option<Intersection> {
-        match (self.a.intersect(p, d), self.b.intersect(p, d)) {
-            (Some(i1), Some(i2)) => {
-                let d1 = distance(p, i1.point);
-                let d2 = distance(p, i2.point);
-                if d1 < d2 {
-                    Some(i1)
-                } else {
-                    Some(i2)
-                }
+    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection> {
+        let mut result: Vec<Intersection> = Vec::new();
+        for item in self.a.intersect(p, d) {
+            if !self.b.is_inside(item.point) {
+                result.push(item);
             }
-            (None, r2) => r2,
-            (r1, None) => r1,
         }
+        for item in self.b.intersect(p, d) {
+            if !self.a.is_inside(item.point) {
+                result.push(item);
+            }
+        }
+        result
     }
 
     fn is_inside(&self, p: (f64, f64)) -> bool {
@@ -239,41 +234,19 @@ pub struct IntersectShape {
 }
 
 impl Shape for IntersectShape {
-    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Option<Intersection> {
-        match (self.a.intersect(p, d), self.b.intersect(p, d)) {
-            (Some(i1), Some(i2)) => {
-                if self.a.is_inside(i2.point) && self.b.is_inside(i1.point) {
-                    let d1 = distance(p, i1.point);
-                    let d2 = distance(p, i2.point);
-                    if d1 < d2 {
-                        Some(i1)
-                    } else {
-                        Some(i2)
-                    }
-                } else if self.a.is_inside(i2.point) {
-                    Some(i2)
-                } else if self.b.is_inside(i1.point) {
-                    Some(i1)
-                } else {
-                    None
-                }
+    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection> {
+        let mut result: Vec<Intersection> = Vec::new();
+        for item in self.a.intersect(p, d) {
+            if self.b.is_inside(item.point) {
+                result.push(item);
             }
-            (None, Some(i2)) => {
-                if self.a.is_inside(i2.point) {
-                    Some(i2)
-                } else {
-                    None
-                }
-            }
-            (Some(i1), None) => {
-                if self.b.is_inside(i1.point) {
-                    Some(i1)
-                } else {
-                    None
-                }
-            }
-            (None, None) => None,
         }
+        for item in self.b.intersect(p, d) {
+            if self.a.is_inside(item.point) {
+                result.push(item);
+            }
+        }
+        result
     }
 
     fn is_inside(&self, p: (f64, f64)) -> bool {

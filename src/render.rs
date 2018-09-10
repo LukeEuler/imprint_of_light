@@ -30,16 +30,17 @@ pub struct Entity {
     pub absorption: Color,
 }
 
+#[allow(dead_code)]
 impl Entity {
-    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Option<EntityIntersection> {
-        self.shape.intersect(p, d).map(|intersection| EntityIntersection {
+    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<EntityIntersection> {
+        self.shape.intersect(p, d).iter().map(|intersection| EntityIntersection {
             point: intersection.point,
             normal: intersection.normal,
             emissive: self.emissive.clone(),
             reflectivity: self.reflectivity,
             eta: self.eta,
             absorption: self.absorption,
-        })
+        }).collect()
     }
 }
 
@@ -52,16 +53,16 @@ impl Scene {
     fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Option<EntityIntersection> {
         let mut res: Option<EntityIntersection> = None;
         for e in &self.entities {
-            if let Some(intersection) = e.intersect(p, d) {
+            for item in e.intersect(p, d) {
                 res = match res {
                     Some(r) => {
-                        if distance(p, r.point) > distance(p, intersection.point) {
-                            Some(intersection)
+                        if distance(p, r.point) > distance(p, item.point) {
+                            Some(item)
                         } else {
                             Some(r)
                         }
                     }
-                    None => Some(intersection),
+                    None => Some(item),
                 }
             }
         }
