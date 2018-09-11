@@ -1,7 +1,7 @@
 use std::f64::consts::PI;
-use calculate::distance;
 
 const EPSILON: f64 = 1e-6;
+const WHOLE_ANGLE: f64 = 360.0;
 
 
 #[derive(Clone, Copy, Debug)]
@@ -117,15 +117,31 @@ impl Polygon {
         }
     }
 
-    pub fn rectangle(cx: f64, cy: f64, theta: f64, sx: f64, sy: f64) -> Self {
+    pub fn rectangle(cx: f64, cy: f64, e: f64, sx: f64, sy: f64) -> Self {
+        let mut elevation = e;
+        while elevation < 0.0 {
+            elevation += WHOLE_ANGLE;
+        }
+        while elevation >= WHOLE_ANGLE {
+            elevation -= WHOLE_ANGLE
+        }
+        let theta = 2.0 * PI * elevation / WHOLE_ANGLE;
         Self::new([(sx, -sy), (-sx, -sy), (-sx, sy), (sx, sy)].iter()
             .map(|&(x, y)| (x * theta.cos() - y * theta.sin(), x * theta.sin() + y * theta.cos()))
             .map(|(x, y)| (x + cx, y + cy))
             .collect())
     }
 
-    pub fn ngon(cx: f64, cy: f64, r: f64, n: u32) -> Self {
+    pub fn regular(cx: f64, cy: f64, r: f64, n: u32, e: f64) -> Self {
+        let mut elevation = e;
+        while elevation < 0.0 {
+            elevation += WHOLE_ANGLE;
+        }
+        while elevation >= WHOLE_ANGLE {
+            elevation -= WHOLE_ANGLE
+        }
         Self::new((0..n).map(|i| i as f64 * 2.0 * PI / n as f64)
+            .map(|theta| (theta + 2.0 * PI * elevation / WHOLE_ANGLE))
             .map(|theta| (r * theta.cos(), r * theta.sin()))
             .map(|(x, y)| (cx + x, cy - y))
             .collect())

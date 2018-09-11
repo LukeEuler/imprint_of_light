@@ -1,6 +1,88 @@
 [
   {
     "enable": true,
+    "out": "pics/joy_endless.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "circle": {"cx": 0.5, "cy": 0.5, "r": 0.12}
+        },
+        "emissive": {
+          "grey": 1
+        },
+        "reflectivity": 0.0,
+        "eta": 1,
+        "absorption": {
+          "black": true
+        }
+      },
+      {
+        "shape": {
+          "polygon": {"regular": {"cx": 0.5, "cy": 0.21, "r": 0.13, "n": 3, "e": 90}}
+        },
+        "emissive": {
+          "black": true
+        },
+        "reflectivity": 0.0,
+        "eta": 1.5,
+        "absorption": {
+          "rgb": {"r": 5, "g": 0.9, "b": 0.5}
+        }
+      },
+      {
+        "shape": {
+          "polygon": {"regular": {"cx": 0.21, "cy": 0.5, "r": 0.15, "n": 4, "e": 45}}
+        },
+        "emissive": {
+          "black": true
+        },
+        "reflectivity": 0.0,
+        "eta": 1.5,
+        "absorption": {
+          "rgb": {"r": 0.5, "g": 5, "b": 0.5}
+        }
+      },
+      {
+        "shape": {
+          "circle": {"cx": 0.79, "cy": 0.5, "r": 0.13}
+        },
+        "emissive": {
+          "black": true
+        },
+        "reflectivity": 0.0,
+        "eta": 1.5,
+        "absorption": {
+          "rgb": {"r": 0.5, "g": 5, "b": 5}
+        }
+      },
+      {
+        "shape": {
+          "union": {
+            "a": {
+              "polygon": {"rectangle": {"cx": 0.5, "cy": 0.79, "e": 45, "sx": 0.13, "sy": 0.04}}
+            },
+            "b": {
+              "polygon": {"rectangle": {"cx": 0.5, "cy": 0.79, "e": -45, "sx": 0.13, "sy": 0.04}}
+            }
+          }
+        },
+        "emissive": {
+          "black": true
+        },
+        "reflectivity": 0.0,
+        "eta": 1.5,
+        "absorption": {
+          "rgb": {"r": 5, "g": 5, "b": 0.5}
+        }
+      }
+    ]
+  },
+  {
+    "enable": false,
     "out": "pics/ring.png",
     "width": 2048,
     "height": 2048,
@@ -111,10 +193,10 @@
         "shape": {
           "union": {
             "a": {
-              "polygon": {"regular": {"cx": 0.55, "cy": 0.5, "r": 0.2, "n": 3}}
+              "polygon": {"regular": {"cx": 0.55, "cy": 0.5, "r": 0.2, "n": 3, "e": 0}}
             },
             "b": {
-              "polygon": {"regular": {"cx": 0.75, "cy": 0.5, "r": 0.2, "n": 3}}
+              "polygon": {"regular": {"cx": 0.75, "cy": 0.5, "r": 0.2, "n": 3, "e": 0}}
             }
           }
         },
@@ -247,7 +329,7 @@
       },
       {
         "shape": {
-          "polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.1, "n": 3}}
+          "polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.1, "n": 3, "e": 0}}
         },
         "emissive": {
           "black": true
