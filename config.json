@@ -1,6 +1,66 @@
 [
   {
     "enable": true,
+    "out": "pics/ring.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}
+        },
+        "emissive": {
+          "grey": 10.0
+        },
+        "reflectivity": 0.0,
+        "eta": 0.0,
+        "absorption": {
+          "black": true
+        }
+      },
+      {
+        "shape": {
+          "circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}
+        },
+        "emissive": {
+          "grey": 10.0
+        },
+        "reflectivity": 0.0,
+        "eta": 0.0,
+        "absorption": {
+          "black": true
+        }
+      },
+      {
+        "shape": {
+          "intersect": {
+            "a": {
+              "complement": {
+                "a": {
+                  "circle": {"cx": 0.5, "cy": 0.5, "r": 0.1}
+                }
+              }
+            },
+            "b": {
+              "circle": {"cx": 0.5, "cy": 0.5, "r": 0.2}
+            }
+          }
+        },
+        "emissive": {
+          "black": true
+        },
+        "reflectivity": 0.0,
+        "eta": 1.5,
+        "absorption": {
+          "rgb": {"r": 0.5, "g": 5.0, "b": 5.0}
+        }
+      }
+    ]
+  },
+  {
+    "enable": false,
     "out": "pics/tree.png",
     "width": 2048,
     "height": 2048,

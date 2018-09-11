@@ -263,3 +263,34 @@ impl IntersectShape {
         }
     }
 }
+
+#[allow(dead_code)]
+pub struct ComplementShape {
+    pub a: Box<Shape + Sync>,
+}
+
+impl Shape for ComplementShape {
+    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection> {
+        let mut result: Vec<Intersection> = Vec::new();
+        for item in self.a.intersect(p, d) {
+            let mut opposite_item = item;
+            opposite_item.normal.0 = -opposite_item.normal.0;
+            opposite_item.normal.1 = -opposite_item.normal.1;
+            result.push(opposite_item);
+        }
+        result
+    }
+
+    fn is_inside(&self, p: (f64, f64)) -> bool {
+        !self.a.is_inside(p)
+    }
+}
+
+#[allow(dead_code)]
+impl ComplementShape {
+    fn new(a: Box<Shape + Sync>) -> ComplementShape {
+        ComplementShape {
+            a
+        }
+    }
+}
