@@ -1,6 +1,73 @@
 [
   {
     "enable": false,
+    "out": "pics/flower.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "circle": {"cx": 0.5, "cy": 0.5, "r": 0.12}
+        },
+        "emissive": {
+          "grey": 1
+        },
+        "reflectivity": 0.0,
+        "eta": 1,
+        "absorption": {
+          "black": true
+        }
+      },
+      {
+        "shape": {
+          "intersect": {
+            "a": {
+              "complement": {
+                "circle": {"cx": 0.5, "cy": 0.5, "r": 0.25}
+              }
+            },
+            "b": {
+              "polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.4, "n": 3, "e": -90}}
+            }
+          }
+        },
+        "emissive": {
+          "black": true
+        },
+        "reflectivity": 0.0,
+        "eta": 1.5,
+        "absorption": {
+          "rgb": {"r": 5.0, "g": 0.5, "b": 0.5}
+        }
+      },
+      {
+        "shape": {
+          "intersect": {
+            "a": {
+              "complement": {
+                "circle": {"cx": 0.5, "cy": 0.5, "r": 0.25}
+              }
+            },
+            "b": {
+              "polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.4, "n": 3, "e": 90}}
+            }
+          }
+        },
+        "emissive": {
+          "black": true
+        },
+        "reflectivity": 0.0,
+        "eta": 1.5,
+        "absorption": {
+          "rgb": {"r": 0.5, "g": 5, "b": 0.5}
+        }
+      }
+    ]
+  },
+  {
+    "enable": false,
     "out": "pics/joy_endless.png",
     "width": 2048,
     "height": 2048,
