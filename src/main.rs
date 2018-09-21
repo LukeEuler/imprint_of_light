@@ -53,7 +53,7 @@ enum ShapeJson {
     #[serde(rename = "intersect")]
     Intersect { a: Box<ShapeJson>, b: Box<ShapeJson> },
     #[serde(rename = "complement")]
-    Complement { a: Box<ShapeJson> },
+    Complement(Box<ShapeJson>),
 }
 
 #[derive(Serialize, Deserialize)]
@@ -135,7 +135,7 @@ fn get_shape(shape_json: ShapeJson) -> Box<Shape + Sync> {
                 b: get_shape(*b),
             })
         }
-        ShapeJson::Complement { a } => {
+        ShapeJson::Complement(a) => {
             Box::new(ComplementShape {
                 a: get_shape(*a),
             })
