@@ -146,6 +146,30 @@ impl Polygon {
             .map(|(x, y)| (cx + x, cy - y))
             .collect())
     }
+
+    pub fn star(cx: f64, cy: f64, r: f64, n: u32, e: f64) -> Self {
+        assert!(n >= 5);
+        let mut elevation = e;
+        while elevation < 0.0 {
+            elevation += WHOLE_ANGLE;
+        }
+        while elevation >= WHOLE_ANGLE {
+            elevation -= WHOLE_ANGLE
+        }
+        let cos = (PI / n as f64).cos();
+        let scaling_ratio = (cos * cos * 2.0 - 1.0) / cos;
+        Self::new((0..2 * n).map(|i| (i, i as f64 * PI / n as f64))
+            .map(|(i, theta)| (i, theta + 2.0 * PI * elevation / WHOLE_ANGLE))
+            .map(|(i, theta)| {
+                let mut l = r;
+                if i % 2 == 1 {
+                    l = l * scaling_ratio;
+                }
+                (l * theta.cos(), l * theta.sin())
+            })
+            .map(|(x, y)| (cx + x, cy - y))
+            .collect())
+    }
 }
 
 impl Shape for Polygon {

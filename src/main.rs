@@ -62,6 +62,8 @@ enum PolygonJson {
     Points(Vec<(f64, f64)>),
     #[serde(rename = "regular")]
     Regular { cx: f64, cy: f64, r: f64, n: u32, e: f64 },
+    #[serde(rename = "star")]
+    Star { cx: f64, cy: f64, r: f64, n: u32, e: f64 },
     #[serde(rename = "rectangle")]
     Rectangle { cx: f64, cy: f64, e: f64, sx: f64, sy: f64 },
 }
@@ -102,6 +104,9 @@ fn get_shape(shape_json: ShapeJson) -> Box<Shape + Sync> {
                 }
                 PolygonJson::Regular { cx, cy, r, n, e } => {
                     Box::new(Polygon::regular(cx, cy, r, n, e))
+                }
+                PolygonJson::Star { cx, cy, r, n, e } => {
+                    Box::new(Polygon::star(cx, cy, r, n, e))
                 }
                 PolygonJson::Rectangle { cx, cy, e, sx, sy } => {
                     Box::new(Polygon::rectangle(cx, cy, e, sx, sy))
