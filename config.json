@@ -1,6 +1,69 @@
 [
   {
     "enable": false,
+    "out": "pics/union.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}
+        },
+        "emissive": {
+          "grey": 10
+        },
+        "reflectivity": 0.0,
+        "eta": 0.0,
+        "absorption": {
+          "black": true
+        }
+      },
+      {
+        "shape": {
+          "circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}
+        },
+        "emissive": {
+          "grey": 10
+        },
+        "reflectivity": 0.0,
+        "eta": 0.0,
+        "absorption": {
+          "black": true
+        }
+      },
+      {
+        "shape": {
+          "union": {
+            "a": {
+              "union": {
+                "a": {
+                  "circle": {"cx": 0.35, "cy": 0.5, "r": 0.2}
+                },
+                "b": {
+                  "circle": {"cx": 0.65, "cy": 0.5, "r": 0.2}
+                }
+              }
+            },
+            "b": {
+              "circle": {"cx": 0.5, "cy": 0.3, "r": 0.2}
+            }
+          }
+        },
+        "emissive": {
+          "black": true
+        },
+        "reflectivity": 0.0,
+        "eta": 1.5,
+        "absorption": {
+          "rgb": {"r": 0.5, "g": 0.2, "b": 0.2}
+        }
+      }
+    ]
+  },
+  {
+    "enable": false,
     "out": "pics/candle.png",
     "width": 2048,
     "height": 2048,
