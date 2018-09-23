@@ -24,9 +24,12 @@ struct EntityIntersection {
 
 pub struct Entity {
     pub shape: Box<Shape + Sync>,
+    // 放射
     pub emissive: Color,
     pub reflectivity: f64,
+    // 折射率
     pub eta: f64,
+    // 吸收
     pub absorption: Color,
 }
 

@@ -125,7 +125,7 @@ impl Polygon {
         while elevation >= WHOLE_ANGLE {
             elevation -= WHOLE_ANGLE
         }
-        let theta = 2.0 * PI * elevation / WHOLE_ANGLE;
+        let theta = -2.0 * PI * elevation / WHOLE_ANGLE;
         Self::new([(sx, -sy), (-sx, -sy), (-sx, sy), (sx, sy)].iter()
             .map(|&(x, y)| (x * theta.cos() - y * theta.sin(), x * theta.sin() + y * theta.cos()))
             .map(|(x, y)| (x + cx, y + cy))
