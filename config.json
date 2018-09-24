@@ -70,20 +70,20 @@
         "shape": {
           "intersect": [
             {
-              "circle": {"cx": 0.4, "cy": 0.5, "r": 0.12}
+              "circle": {"cx": 0.4, "cy": 0.3, "r": 0.12}
             },
             {
-              "circle": {"cx": 0.6, "cy": 0.5, "r": 0.12}
+              "circle": {"cx": 0.6, "cy": 0.3, "r": 0.12}
             },
             {
-              "plane": {"px": 0.5, "py": 0.55, "nx": 0, "ny": 1}
+              "plane": {"px": 0.5, "py": 0.35, "nx": 0, "ny": 1}
             }
           ]
         },
         "emissive": {
-          "grey": 2
+          "grey": 1.9
         },
-        "reflectivity": 0.0,
+        "reflectivity": 0,
         "eta": 0,
         "absorption": {
           "rgb": {"r": 2, "g": 6, "b": 16}
@@ -95,8 +95,8 @@
             "points": [
               [0.45, 0.9],
               [0.55, 0.9],
-              [0.55, 0.58],
-              [0.45, 0.58]
+              [0.55, 0.38],
+              [0.45, 0.38]
             ]
           }
         },
@@ -104,7 +104,93 @@
           "black": true
         },
         "reflectivity": 0,
-        "eta": 1,
+        "eta": 1.5,
+        "absorption": {
+          "black": true
+        }
+      },
+      {
+        "shape": {
+          "intersect": [
+            {
+              "circle": {"cx": 0.2, "cy": 0.5, "r": 0.12}
+            },
+            {
+              "circle": {"cx": 0.4, "cy": 0.5, "r": 0.12}
+            },
+            {
+              "plane": {"px": 0.5, "py": 0.55, "nx": 0, "ny": 1}
+            }
+          ]
+        },
+        "emissive": {
+          "grey": 1.9
+        },
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {
+          "rgb": {"r": 2, "g": 6, "b": 16}
+        }
+      },
+      {
+        "shape": {
+          "polygon": {
+            "points": [
+              [0.25, 0.9],
+              [0.35, 0.9],
+              [0.35, 0.58],
+              [0.25, 0.58]
+            ]
+          }
+        },
+        "emissive": {
+          "black": true
+        },
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {
+          "black": true
+        }
+      },
+      {
+        "shape": {
+          "intersect": [
+            {
+              "circle": {"cx": 0.6, "cy": 0.4, "r": 0.12}
+            },
+            {
+              "circle": {"cx": 0.8, "cy": 0.4, "r": 0.12}
+            },
+            {
+              "plane": {"px": 0.5, "py": 0.45, "nx": 0, "ny": 1}
+            }
+          ]
+        },
+        "emissive": {
+          "grey": 1.9
+        },
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {
+          "rgb": {"r": 2, "g": 6, "b": 16}
+        }
+      },
+      {
+        "shape": {
+          "polygon": {
+            "points": [
+              [0.65, 0.9],
+              [0.75, 0.9],
+              [0.75, 0.48],
+              [0.65, 0.48]
+            ]
+          }
+        },
+        "emissive": {
+          "black": true
+        },
+        "reflectivity": 0,
+        "eta": 1.5,
         "absorption": {
           "black": true
         }
