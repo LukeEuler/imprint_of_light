@@ -269,38 +269,50 @@ impl UnionShape {
 
 #[allow(dead_code)]
 pub struct IntersectShape {
-    pub a: Box<Shape + Sync>,
-    pub b: Box<Shape + Sync>,
+    pub c: Vec<Box<Shape + Sync>>,
 }
 
 impl Shape for IntersectShape {
     fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection> {
+        let length = self.c.len();
         let mut result: Vec<Intersection> = Vec::new();
-        for item in self.a.intersect(p, d) {
-            if self.b.is_inside(item.point) {
-                result.push(item);
-            }
+
+        if length == 0 {
+            return result;
         }
-        for item in self.b.intersect(p, d) {
-            if self.a.is_inside(item.point) {
-                result.push(item);
+
+        if length == 1 {
+            return self.c[0].intersect(p, d);
+        }
+
+        for i in 0..length {
+            for item in self.c[i].intersect(p, d) {
+                let mut check = true;
+                for j in 0..length {
+                    if i == j {
+                        continue;
+                    }
+                    if !&self.c[j].is_inside(item.point) {
+                        check = false;
+                        break;
+                    }
+                }
+                if check {
+                    result.push(item);
+                }
             }
         }
         result
     }
 
     fn is_inside(&self, p: (f64, f64)) -> bool {
-        self.a.is_inside(p) && self.b.is_inside(p)
-    }
-}
-
-#[allow(dead_code)]
-impl IntersectShape {
-    fn new(a: Box<Shape + Sync>, b: Box<Shape + Sync>) -> IntersectShape {
-        IntersectShape {
-            a,
-            b,
-        }
+        let mut result = true;
+        self.c.iter().for_each(|item| {
+            if !item.is_inside(p) {
+                result = false;
+            }
+        });
+        result
     }
 }
 

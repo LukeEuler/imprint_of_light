@@ -72,21 +72,17 @@
     "scenes": [
       {
         "shape": {
-          "intersect": {
-            "a": {
-              "intersect": {
-                "a": {
-                  "circle": {"cx": 0.4, "cy": 0.5, "r": 0.12}
-                },
-                "b": {
-                  "circle": {"cx": 0.6, "cy": 0.5, "r": 0.12}
-                }
-              }
+          "intersect": [
+            {
+              "circle": {"cx": 0.4, "cy": 0.5, "r": 0.12}
             },
-            "b": {
+            {
+              "circle": {"cx": 0.6, "cy": 0.5, "r": 0.12}
+            },
+            {
               "plane": {"px": 0.5, "py": 0.55, "nx": 0, "ny": 1}
             }
-          }
+          ]
         },
         "emissive": {
           "grey": 2
@@ -191,16 +187,16 @@
       },
       {
         "shape": {
-          "intersect": {
-            "a": {
+          "intersect": [
+            {
               "complement": {
                 "circle": {"cx": 0.5, "cy": 0.5, "r": 0.25}
               }
             },
-            "b": {
+            {
               "polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.4, "n": 3, "e": -90}}
             }
-          }
+          ]
         },
         "emissive": {
           "black": true
@@ -213,16 +209,16 @@
       },
       {
         "shape": {
-          "intersect": {
-            "a": {
+          "intersect": [
+            {
               "complement": {
                 "circle": {"cx": 0.5, "cy": 0.5, "r": 0.25}
               }
             },
-            "b": {
+            {
               "polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.4, "n": 3, "e": 90}}
             }
-          }
+          ]
         },
         "emissive": {
           "black": true
@@ -353,16 +349,16 @@
       },
       {
         "shape": {
-          "intersect": {
-            "a": {
+          "intersect": [
+            {
               "complement": {
                 "circle": {"cx": 0.5, "cy": 0.5, "r": 0.1}
               }
             },
-            "b": {
+            {
               "circle": {"cx": 0.5, "cy": 0.5, "r": 0.2}
             }
-          }
+          ]
         },
         "emissive": {
           "black": true
@@ -576,14 +572,14 @@
       },
       {
         "shape": {
-          "intersect": {
-            "a": {
+          "intersect": [
+            {
               "circle": {"cx": 0.8, "cy": 0.5, "r": 0.1}
             },
-            "b": {
+            {
               "plane": {"px": 0.8, "py": 0.5, "nx": 0.0, "ny": 1.0}
             }
-          }
+          ]
         },
         "emissive": {
           "black": true

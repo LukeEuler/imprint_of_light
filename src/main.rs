@@ -51,7 +51,7 @@ enum ShapeJson {
     #[serde(rename = "union")]
     Union { a: Box<ShapeJson>, b: Box<ShapeJson> },
     #[serde(rename = "intersect")]
-    Intersect { a: Box<ShapeJson>, b: Box<ShapeJson> },
+    Intersect(Vec<Box<ShapeJson>>),
     #[serde(rename = "complement")]
     Complement(Box<ShapeJson>),
 }
@@ -134,10 +134,14 @@ fn get_shape(shape_json: ShapeJson) -> Box<Shape + Sync> {
                 b: get_shape(*b),
             })
         }
-        ShapeJson::Intersect { a, b } => {
+        ShapeJson::Intersect(list) =>{
+            let mut shapes: Vec<Box<Shape + Sync>> = Vec::new();
+            for item in list {
+                let shape = get_shape(*item);
+                shapes.push(shape);
+            }
             Box::new(IntersectShape {
-                a: get_shape(*a),
-                b: get_shape(*b),
+                c: shapes,
             })
         }
         ShapeJson::Complement(a) => {
