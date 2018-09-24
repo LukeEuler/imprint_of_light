@@ -49,7 +49,7 @@ enum ShapeJson {
     #[serde(rename = "plane")]
     Plane { px: f64, py: f64, nx: f64, ny: f64 },
     #[serde(rename = "union")]
-    Union { a: Box<ShapeJson>, b: Box<ShapeJson> },
+    Union(Vec<Box<ShapeJson>>),
     #[serde(rename = "intersect")]
     Intersect(Vec<Box<ShapeJson>>),
     #[serde(rename = "complement")]
@@ -128,13 +128,17 @@ fn get_shape(shape_json: ShapeJson) -> Box<Shape + Sync> {
                 ny,
             })
         }
-        ShapeJson::Union { a, b } => {
+        ShapeJson::Union(list) => {
+            let mut shapes: Vec<Box<Shape + Sync>> = Vec::new();
+            for item in list {
+                let shape = get_shape(*item);
+                shapes.push(shape);
+            }
             Box::new(UnionShape {
-                a: get_shape(*a),
-                b: get_shape(*b),
+                c: shapes,
             })
         }
-        ShapeJson::Intersect(list) =>{
+        ShapeJson::Intersect(list) => {
             let mut shapes: Vec<Box<Shape + Sync>> = Vec::new();
             for item in list {
                 let shape = get_shape(*item);

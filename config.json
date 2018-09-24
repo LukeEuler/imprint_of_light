@@ -35,21 +35,17 @@
       },
       {
         "shape": {
-          "union": {
-            "a": {
-              "union": {
-                "a": {
-                  "circle": {"cx": 0.35, "cy": 0.5, "r": 0.2}
-                },
-                "b": {
-                  "circle": {"cx": 0.65, "cy": 0.5, "r": 0.2}
-                }
-              }
+          "union": [
+            {
+              "circle": {"cx": 0.35, "cy": 0.5, "r": 0.2}
             },
-            "b": {
+            {
+              "circle": {"cx": 0.65, "cy": 0.5, "r": 0.2}
+            },
+            {
               "circle": {"cx": 0.5, "cy": 0.3, "r": 0.2}
             }
-          }
+          ]
         },
         "emissive": {
           "black": true
@@ -293,14 +289,14 @@
       },
       {
         "shape": {
-          "union": {
-            "a": {
+          "union": [
+            {
               "polygon": {"rectangle": {"cx": 0.5, "cy": 0.79, "e": 45, "sx": 0.13, "sy": 0.04}}
             },
-            "b": {
+            {
               "polygon": {"rectangle": {"cx": 0.5, "cy": 0.79, "e": -45, "sx": 0.13, "sy": 0.04}}
             }
-          }
+          ]
         },
         "emissive": {
           "black": true
@@ -421,14 +417,14 @@
       },
       {
         "shape": {
-          "union": {
-            "a": {
+          "union": [
+            {
               "polygon": {"regular": {"cx": 0.5, "cy": 0.25, "r": 0.2, "n": 3, "e": 90}}
             },
-            "b": {
+            {
               "polygon": {"regular": {"cx": 0.5, "cy": 0.45, "r": 0.2, "n": 3, "e": 90}}
             }
-          }
+          ]
         },
         "emissive": {
           "black": true
