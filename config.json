@@ -1,6 +1,55 @@
 [
   {
     "enable": false,
+    "out": "pics/m.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 4,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": -0.1, "cy": 1.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": 1.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 7},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {"polygon": {"rectangle": {"cx": 0.25, "cy": 0.5, "e": 0, "sx": 0.05, "sy": 0.25}}},
+            {"polygon": {"rectangle": {"cx": 0.75, "cy": 0.5, "e": 0, "sx": 0.05, "sy": 0.25}}},
+            {
+              "polygon": {"rectangle": {"cx": 0.375, "cy": 0.5, "e": 26.56505118, "sx": 0.05, "sy": 0.2795084971874737}}
+            },
+            {
+              "polygon": {
+                "rectangle": {"cx": 0.625, "cy": 0.5, "e": -26.56505118, "sx": 0.05, "sy": 0.2795084971874737}
+              }
+            },
+            {"circle": {"cx": 0.25, "cy": 0.25, "r": 0.05}},
+            {"circle": {"cx": 0.75, "cy": 0.25, "r": 0.05}},
+            {"circle": {"cx": 0.25, "cy": 0.75, "r": 0.05}},
+            {"circle": {"cx": 0.75, "cy": 0.75, "r": 0.05}},
+            {"circle": {"cx": 0.5, "cy": 0.75, "r": 0.05}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 3, "g": 3, "b": 3}}
+      }
+    ]
+  },
+  {
+    "enable": false,
     "out": "pics/union.png",
     "width": 2048,
     "height": 2048,
@@ -9,52 +58,28 @@
     "scenes": [
       {
         "shape": {
-          "circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}}
+          ]
         },
-        "emissive": {
-          "grey": 10
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
-      },
-      {
-        "shape": {
-          "circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}
-        },
-        "emissive": {
-          "grey": 10
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "emissive": {"grey": 10},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
         "shape": {
           "union": [
-            {
-              "circle": {"cx": 0.35, "cy": 0.5, "r": 0.2}
-            },
-            {
-              "circle": {"cx": 0.65, "cy": 0.5, "r": 0.2}
-            },
-            {
-              "circle": {"cx": 0.5, "cy": 0.3, "r": 0.2}
-            }
+            {"circle": {"cx": 0.35, "cy": 0.5, "r": 0.2}},
+            {"circle": {"cx": 0.65, "cy": 0.5, "r": 0.2}},
+            {"circle": {"cx": 0.5, "cy": 0.3, "r": 0.2}}
           ]
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 0.5, "g": 0.2, "b": 0.2}
-        }
+        "absorption": {"rgb": {"r": 0.5, "g": 0.2, "b": 0.2}}
       }
     ]
   },
@@ -69,25 +94,15 @@
       {
         "shape": {
           "intersect": [
-            {
-              "circle": {"cx": 0.4, "cy": 0.3, "r": 0.12}
-            },
-            {
-              "circle": {"cx": 0.6, "cy": 0.3, "r": 0.12}
-            },
-            {
-              "plane": {"px": 0.5, "py": 0.35, "nx": 0, "ny": 1}
-            }
+            {"circle": {"cx": 0.4, "cy": 0.3, "r": 0.12}},
+            {"circle": {"cx": 0.6, "cy": 0.3, "r": 0.12}},
+            {"plane": {"px": 0.5, "py": 0.35, "nx": 0, "ny": 1}}
           ]
         },
-        "emissive": {
-          "grey": 1.9
-        },
+        "emissive": {"grey": 1.9},
         "reflectivity": 0,
         "eta": 0,
-        "absorption": {
-          "rgb": {"r": 2, "g": 6, "b": 16}
-        }
+        "absorption": {"rgb": {"r": 2, "g": 6, "b": 16}}
       },
       {
         "shape": {
@@ -100,37 +115,23 @@
             ]
           }
         },
-        "emissive": {
-          "black": true
-        },
+        "emissive": {"black": true},
         "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "black": true
-        }
+        "absorption": {"black": true}
       },
       {
         "shape": {
           "intersect": [
-            {
-              "circle": {"cx": 0.2, "cy": 0.5, "r": 0.12}
-            },
-            {
-              "circle": {"cx": 0.4, "cy": 0.5, "r": 0.12}
-            },
-            {
-              "plane": {"px": 0.5, "py": 0.55, "nx": 0, "ny": 1}
-            }
+            {"circle": {"cx": 0.2, "cy": 0.5, "r": 0.12}},
+            {"circle": {"cx": 0.4, "cy": 0.5, "r": 0.12}},
+            {"plane": {"px": 0.5, "py": 0.55, "nx": 0, "ny": 1}}
           ]
         },
-        "emissive": {
-          "grey": 1.9
-        },
+        "emissive": {"grey": 1.9},
         "reflectivity": 0,
         "eta": 0,
-        "absorption": {
-          "rgb": {"r": 2, "g": 6, "b": 16}
-        }
+        "absorption": {"rgb": {"r": 2, "g": 6, "b": 16}}
       },
       {
         "shape": {
@@ -143,37 +144,23 @@
             ]
           }
         },
-        "emissive": {
-          "black": true
-        },
+        "emissive": {"black": true},
         "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "black": true
-        }
+        "absorption": {"black": true}
       },
       {
         "shape": {
           "intersect": [
-            {
-              "circle": {"cx": 0.6, "cy": 0.4, "r": 0.12}
-            },
-            {
-              "circle": {"cx": 0.8, "cy": 0.4, "r": 0.12}
-            },
-            {
-              "plane": {"px": 0.5, "py": 0.45, "nx": 0, "ny": 1}
-            }
+            {"circle": {"cx": 0.6, "cy": 0.4, "r": 0.12}},
+            {"circle": {"cx": 0.8, "cy": 0.4, "r": 0.12}},
+            {"plane": {"px": 0.5, "py": 0.45, "nx": 0, "ny": 1}}
           ]
         },
-        "emissive": {
-          "grey": 1.9
-        },
+        "emissive": {"grey": 1.9},
         "reflectivity": 0,
         "eta": 0,
-        "absorption": {
-          "rgb": {"r": 2, "g": 6, "b": 16}
-        }
+        "absorption": {"rgb": {"r": 2, "g": 6, "b": 16}}
       },
       {
         "shape": {
@@ -186,14 +173,10 @@
             ]
           }
         },
-        "emissive": {
-          "black": true
-        },
+        "emissive": {"black": true},
         "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "black": true
-        }
+        "absorption": {"black": true}
       }
     ]
   },
@@ -207,42 +190,24 @@
     "scenes": [
       {
         "shape": {
-          "circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}}
+          ]
         },
         "emissive": {
           "grey": 10.0
         },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
-        "shape": {
-          "circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}
-        },
-        "emissive": {
-          "grey": 10.0
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
-      },
-      {
-        "shape": {
-          "polygon": {"star": {"cx": 0.5, "cy": 0.5, "r": 0.3, "n": 5, "e": 90}}
-        },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "shape": {"polygon": {"star": {"cx": 0.5, "cy": 0.5, "r": 0.3, "n": 5, "e": 90}}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 1, "g": 10, "b": 10}
-        }
+        "absorption": {"rgb": {"r": 1, "g": 10, "b": 10}}
       }
     ]
   },
@@ -255,61 +220,35 @@
     "max_depth": 3,
     "scenes": [
       {
-        "shape": {
-          "circle": {"cx": 0.5, "cy": 0.5, "r": 0.12}
-        },
-        "emissive": {
-          "grey": 1
-        },
-        "reflectivity": 0.0,
+        "shape": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.12}},
+        "emissive": {"grey": 1},
+        "reflectivity": 0,
         "eta": 1,
-        "absorption": {
-          "black": true
-        }
+        "absorption": {"black": true}
       },
       {
         "shape": {
           "intersect": [
-            {
-              "complement": {
-                "circle": {"cx": 0.5, "cy": 0.5, "r": 0.25}
-              }
-            },
-            {
-              "polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.4, "n": 3, "e": -90}}
-            }
+            {"complement": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.25}}},
+            {"polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.4, "n": 3, "e": -90}}}
           ]
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 5.0, "g": 0.5, "b": 0.5}
-        }
+        "absorption": {"rgb": {"r": 5, "g": 0.5, "b": 0.5}}
       },
       {
         "shape": {
           "intersect": [
-            {
-              "complement": {
-                "circle": {"cx": 0.5, "cy": 0.5, "r": 0.25}
-              }
-            },
-            {
-              "polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.4, "n": 3, "e": 90}}
-            }
+            {"complement": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.25}}},
+            {"polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.4, "n": 3, "e": 90}}}
           ]
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 0.5, "g": 5, "b": 0.5}
-        }
+        "absorption": {"rgb": {"r": 0.5, "g": 5, "b": 0.5}}
       }
     ]
   },
@@ -322,76 +261,44 @@
     "max_depth": 3,
     "scenes": [
       {
-        "shape": {
-          "circle": {"cx": 0.5, "cy": 0.5, "r": 0.12}
-        },
-        "emissive": {
-          "grey": 1
-        },
-        "reflectivity": 0.0,
+        "shape": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.12}},
+        "emissive": {"grey": 1},
+        "reflectivity": 0,
         "eta": 1,
-        "absorption": {
-          "black": true
-        }
+        "absorption": {"black": true}
       },
       {
-        "shape": {
-          "polygon": {"regular": {"cx": 0.5, "cy": 0.21, "r": 0.13, "n": 3, "e": 90}}
-        },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "shape": {"polygon": {"regular": {"cx": 0.5, "cy": 0.21, "r": 0.13, "n": 3, "e": 90}}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 5, "g": 0.9, "b": 0.5}
-        }
+        "absorption": {"rgb": {"r": 5, "g": 0.9, "b": 0.5}}
       },
       {
-        "shape": {
-          "polygon": {"regular": {"cx": 0.21, "cy": 0.5, "r": 0.15, "n": 4, "e": 45}}
-        },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "shape": {"polygon": {"regular": {"cx": 0.21, "cy": 0.5, "r": 0.15, "n": 4, "e": 45}}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 0.5, "g": 5, "b": 0.5}
-        }
+        "absorption": {"rgb": {"r": 0.5, "g": 5, "b": 0.5}}
       },
       {
-        "shape": {
-          "circle": {"cx": 0.79, "cy": 0.5, "r": 0.13}
-        },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "shape": {"circle": {"cx": 0.79, "cy": 0.5, "r": 0.13}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 0.5, "g": 5, "b": 5}
-        }
+        "absorption": {"rgb": {"r": 0.5, "g": 5, "b": 5}}
       },
       {
         "shape": {
           "union": [
-            {
-              "polygon": {"rectangle": {"cx": 0.5, "cy": 0.79, "e": 45, "sx": 0.13, "sy": 0.04}}
-            },
-            {
-              "polygon": {"rectangle": {"cx": 0.5, "cy": 0.79, "e": -45, "sx": 0.13, "sy": 0.04}}
-            }
+            {"polygon": {"rectangle": {"cx": 0.5, "cy": 0.79, "e": 45, "sx": 0.13, "sy": 0.04}}},
+            {"polygon": {"rectangle": {"cx": 0.5, "cy": 0.79, "e": -45, "sx": 0.13, "sy": 0.04}}}
           ]
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 5, "g": 5, "b": 0.5}
-        }
+        "absorption": {"rgb": {"r": 5, "g": 5, "b": 0.5}}
       }
     ]
   },
@@ -405,51 +312,27 @@
     "scenes": [
       {
         "shape": {
-          "circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}}
+          ]
         },
-        "emissive": {
-          "grey": 10.0
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
-      },
-      {
-        "shape": {
-          "circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}
-        },
-        "emissive": {
-          "grey": 10.0
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "emissive": {"grey": 10},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
         "shape": {
           "intersect": [
-            {
-              "complement": {
-                "circle": {"cx": 0.5, "cy": 0.5, "r": 0.1}
-              }
-            },
-            {
-              "circle": {"cx": 0.5, "cy": 0.5, "r": 0.2}
-            }
+            {"complement": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.1}}},
+            {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.2}}
           ]
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 0.5, "g": 5.0, "b": 5.0}
-        }
+        "absorption": {"rgb": {"r": 0.5, "g": 5, "b": 5}}
       }
     ]
   },
@@ -472,14 +355,10 @@
             ]
           }
         },
-        "emissive": {
-          "grey": 1.6
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "emissive": {"grey": 1.6},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
         "shape": {
@@ -492,34 +371,22 @@
             ]
           }
         },
-        "emissive": {
-          "grey": 1.2
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "emissive": {"grey": 1.2},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
         "shape": {
           "union": [
-            {
-              "polygon": {"regular": {"cx": 0.5, "cy": 0.25, "r": 0.2, "n": 3, "e": 90}}
-            },
-            {
-              "polygon": {"regular": {"cx": 0.5, "cy": 0.45, "r": 0.2, "n": 3, "e": 90}}
-            }
+            {"polygon": {"regular": {"cx": 0.5, "cy": 0.25, "r": 0.2, "n": 3, "e": 90}}},
+            {"polygon": {"regular": {"cx": 0.5, "cy": 0.45, "r": 0.2, "n": 3, "e": 90}}}
           ]
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 5.0, "g": 0.5, "b": 5.0}
-        }
+        "absorption": {"rgb": {"r": 5, "g": 0.5, "b": 5}}
       },
       {
         "shape": {
@@ -532,14 +399,10 @@
             ]
           }
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 1.0, "g": 4.0, "b": 8.0}
-        }
+        "absorption": {"rgb": {"r": 1, "g": 4, "b": 8}}
       }
     ]
   },
@@ -562,14 +425,10 @@
             ]
           }
         },
-        "emissive": {
-          "grey": 1.2
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "emissive": {"grey": 1.2},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
         "shape": {
@@ -581,14 +440,10 @@
             ]
           }
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 2.0, "g": 2.0, "b": 0.5}
-        }
+        "absorption": {"rgb": {"r": 2, "g": 2, "b": 0.5}}
       }
     ]
   },
@@ -601,76 +456,44 @@
     "max_depth": 3,
     "scenes": [
       {
-        "shape": {
-          "circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}
-        },
-        "emissive": {
-          "grey": 10.0
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "shape": {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+        "emissive": {"grey": 10},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
-        "shape": {
-          "circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}
-        },
-        "emissive": {
-          "grey": 10.0
-        },
-        "reflectivity": 0.0,
-        "eta": 0.0,
-        "absorption": {
-          "black": true
-        }
+        "shape": {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+        "emissive": {"grey": 10},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
       },
       {
-        "shape": {
-          "circle": {"cx": 0.2, "cy": 0.5, "r": 0.1}
-        },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "shape": {"circle": {"cx": 0.2, "cy": 0.5, "r": 0.1}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 5.0, "g": 5.0, "b": 1.0}
-        }
+        "absorption": {"rgb": {"r": 5, "g": 5, "b": 1}}
       },
       {
-        "shape": {
-          "polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.1, "n": 3, "e": 0}}
-        },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "shape": {"polygon": {"regular": {"cx": 0.5, "cy": 0.5, "r": 0.1, "n": 3, "e": 0}}},
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 5.0, "g": 1.0, "b": 5.0}
-        }
+        "absorption": {"rgb": {"r": 5, "g": 1, "b": 5}}
       },
       {
         "shape": {
           "intersect": [
-            {
-              "circle": {"cx": 0.8, "cy": 0.5, "r": 0.1}
-            },
-            {
-              "plane": {"px": 0.8, "py": 0.5, "nx": 0.0, "ny": 1.0}
-            }
+            {"circle": {"cx": 0.8, "cy": 0.5, "r": 0.1}},
+            {"plane": {"px": 0.8, "py": 0.5, "nx": 0, "ny": 1}}
           ]
         },
-        "emissive": {
-          "black": true
-        },
-        "reflectivity": 0.0,
+        "emissive": {"black": true},
+        "reflectivity": 0,
         "eta": 1.5,
-        "absorption": {
-          "rgb": {"r": 1.0, "g": 5.0, "b": 5.0}
-        }
+        "absorption": {"rgb": {"r": 1, "g": 5, "b": 5}}
       }
     ]
   }
