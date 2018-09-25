@@ -173,13 +173,14 @@ fn render_point(scene: &Scene, stratification: u32, max_depth: u32, rng: &mut Th
     sum * (1.0 / stratification as f64)
 }
 
-pub fn render(scene: &Scene, size: (u32, u32), stratification: u32, max_depth: u32) -> RgbImage {
-    let mut img = ImageBuffer::from_pixel(size.0, size.1, Rgb([0u8, 0u8, 0u8]));
+pub fn render(scene: &Scene, (width, height): (u32, u32), stratification: u32, max_depth: u32) -> RgbImage {
+    let mut img = ImageBuffer::from_pixel(width, height, Rgb([0u8, 0u8, 0u8]));
     let mut rng = rand::thread_rng();
-    for x in 0..size.0 {
-        for y in 0..size.1 {
-            let xx = x as f64 / size.0 as f64;
-            let yy = y as f64 / size.1 as f64;
+    let min_edge = min(width, height);
+    for x in 0..width {
+        for y in 0..height {
+            let xx = x as f64 / min_edge as f64;
+            let yy = y as f64 / min_edge as f64;
             let color = render_point(&scene, stratification, max_depth, &mut rng, (xx, yy));
             let r = min((color.r * 255.0) as u32, 255) as u8;
             let g = min((color.g * 255.0) as u32, 255) as u8;
