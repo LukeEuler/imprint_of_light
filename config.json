@@ -1,5 +1,47 @@
 [
   {
+    "enable": true,
+    "out": "pics/directional_light.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {"directional_light": {"d": 1, "nx": -2, "ny": -1}},
+        "emissive": {"grey": 15},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {"polygon": {"rectangle": {"cx": 0.25, "cy": 0.5, "e": 0, "sx": 0.05, "sy": 0.25}}},
+            {"polygon": {"rectangle": {"cx": 0.75, "cy": 0.5, "e": 0, "sx": 0.05, "sy": 0.25}}},
+            {
+              "polygon": {"rectangle": {"cx": 0.375, "cy": 0.5, "e": 26.56505118, "sx": 0.05, "sy": 0.2795084971874737}}
+            },
+            {
+              "polygon": {
+                "rectangle": {"cx": 0.625, "cy": 0.5, "e": -26.56505118, "sx": 0.05, "sy": 0.2795084971874737}
+              }
+            },
+            {"circle": {"cx": 0.25, "cy": 0.25, "r": 0.05}},
+            {"circle": {"cx": 0.75, "cy": 0.25, "r": 0.05}},
+            {"circle": {"cx": 0.25, "cy": 0.75, "r": 0.05}},
+            {"circle": {"cx": 0.75, "cy": 0.75, "r": 0.05}},
+            {"circle": {"cx": 0.5, "cy": 0.75, "r": 0.05}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.5,
+        "absorption": {"rgb": {"r": 3, "g": 3, "b": 3}}
+      }
+    ]
+  },
+  {
     "enable": false,
     "out": "pics/m.png",
     "width": 2048,

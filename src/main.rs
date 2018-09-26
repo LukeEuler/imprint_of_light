@@ -42,6 +42,8 @@ struct EntityJson {
 
 #[derive(Serialize, Deserialize)]
 enum ShapeJson {
+    #[serde(rename = "directional_light")]
+    DirectionalLight { d: f64, nx: f64, ny: f64 },
     #[serde(rename = "polygon")]
     Polygon(PolygonJson),
     #[serde(rename = "circle")]
@@ -97,6 +99,13 @@ fn get_color(color_json: ColorJson) -> Color {
 #[allow(dead_code)]
 fn get_shape(shape_json: ShapeJson) -> Box<Shape + Sync> {
     let shape: Box<Shape + Sync> = match shape_json {
+        ShapeJson::DirectionalLight { d, nx, ny } => {
+            Box::new(DirectionalLight {
+                d,
+                nx: -nx,
+                ny: -ny,
+            })
+        }
         ShapeJson::Polygon(mut pj) => {
             match pj {
                 PolygonJson::Points(points) => {

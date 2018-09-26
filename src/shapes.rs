@@ -16,6 +16,37 @@ pub trait Shape {
 }
 
 #[allow(dead_code)]
+pub struct DirectionalLight {
+    pub d: f64,
+    pub nx: f64,
+    pub ny: f64,
+}
+
+impl Shape for DirectionalLight {
+    fn intersect(&self, (px, py): (f64, f64), (dx, dy): (f64, f64)) -> Vec<Intersection> {
+        let mut result: Vec<Intersection> = Vec::new();
+        let c = dx * self.nx + dy * self.ny;
+        if c < EPSILON {
+            return result;
+        }
+        let a = (dx * dx + dy * dy).sqrt();
+        let b = (self.nx * self.nx + self.ny * self.ny).sqrt();
+        let t = (c / (a * b)).acos();
+        if t.abs() < 0.09 {
+            result.push(Intersection {
+                point: (px + self.d * dx / a, py + self.d * dy / a),
+                normal: (self.nx, self.ny),
+            });
+        }
+        result
+    }
+
+    fn is_inside(&self, _: (f64, f64)) -> bool {
+        false
+    }
+}
+
+#[allow(dead_code)]
 pub struct Circle {
     pub cx: f64,
     pub cy: f64,
