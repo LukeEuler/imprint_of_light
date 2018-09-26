@@ -1,6 +1,89 @@
 [
   {
-    "enable": true,
+    "enable": false,
+    "out": "pics/phi.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": -0.1, "cy": 1.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": 1.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 7},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {
+              "polygon": {
+                "points": [
+                  [0.45, 0.8],
+                  [0.55, 0.8],
+                  [0.55, 0.3],
+                  [0.45, 0.3]
+                ]
+              }
+            },
+            {
+              "intersect": [
+                {"circle": {"cx": 0.6, "cy": 0.3, "r": 0.15}},
+                {"complement": {"circle": {"cx": 0.6, "cy": 0.3, "r": 0.05}}},
+                {
+                  "complement": {
+                    "polygon": {
+                      "points": [
+                        [0.55, 0.55],
+                        [0.75, 0.55],
+                        [0.75, 0.3],
+                        [0.55, 0.3]
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "intersect": [
+                {"circle": {"cx": 0.5, "cy": 0.3, "r": 0.25}},
+                {"complement": {"circle": {"cx": 0.5, "cy": 0.3, "r": 0.15}}},
+                {
+                  "complement": {
+                    "polygon": {
+                      "points": [
+                        [0.5, 0.3],
+                        [0.75, 0.3],
+                        [0.75, 0.05],
+                        [0.3, 0.05],
+                        [0.3, 0.15]
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {"circle": {"cx": 0.5, "cy": 0.8, "r": 0.05}},
+            {"circle": {"cx": 0.34, "cy": 0.18, "r": 0.05}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.6,
+        "absorption": {"rgb": {"r": 5, "g": 0.5, "b": 0.5}}
+      }
+    ]
+  },
+  {
+    "enable": false,
     "out": "pics/directional_light.png",
     "width": 2048,
     "height": 2048,
