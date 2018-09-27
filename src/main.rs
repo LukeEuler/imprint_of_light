@@ -18,7 +18,7 @@ use std::fs::File;
 
 use element::Color;
 use shapes::*;
-use render::render;
+use render::render as r;
 use render::{Entity, Scene};
 
 
@@ -195,7 +195,7 @@ fn main() {
         let scene = Scene {
             entities,
         };
-        let img = render(&scene, (item.width, item.height), item.stratification, item.max_depth);
+        let img = r(&scene, (item.width, item.height), item.stratification, item.max_depth);
         img.save(item.out.clone()).unwrap();
     }
 }

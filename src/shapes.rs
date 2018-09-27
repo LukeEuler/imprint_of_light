@@ -54,11 +54,11 @@ pub struct Circle {
 }
 
 impl Shape for Circle {
-    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection> {
-        let a = d.0 * d.0 + d.1 * d.1;
-        let ocx = p.0 - self.cx;
-        let ocy = p.1 - self.cy;
-        let b = 2.0 * (ocx * d.0 + ocy * d.1);
+    fn intersect(&self, (px, py): (f64, f64), (dx, dy): (f64, f64)) -> Vec<Intersection> {
+        let a = dx * dx + dy * dy;
+        let ocx = px - self.cx;
+        let ocy = py - self.cy;
+        let b = 2.0 * (ocx * dx + ocy * dy);
         let c = ocx * ocx + ocy * ocy - self.r * self.r;
         let delta = b * b - 4.0 * a * c;
         let mut result: Vec<Intersection> = Vec::new();
@@ -68,8 +68,8 @@ impl Shape for Circle {
             let t1 = (-b - delta.sqrt()) / (2.0 * a);
             let t2 = (-b + delta.sqrt()) / (2.0 * a);
             if t1 > EPSILON {
-                let x = p.0 + d.0 * t1;
-                let y = p.1 + d.1 * t1;
+                let x = px + dx * t1;
+                let y = py + dy * t1;
                 let nx = x - self.cx;
                 let ny = y - self.cy;
                 let len = (nx * nx + ny * ny).sqrt();
@@ -79,8 +79,8 @@ impl Shape for Circle {
                 });
             }
             if t2 > EPSILON {
-                let x = p.0 + d.0 * t2;
-                let y = p.1 + d.1 * t2;
+                let x = px + dx * t2;
+                let y = py + dy * t2;
                 let nx = x - self.cx;
                 let ny = y - self.cy;
                 let len = (nx * nx + ny * ny).sqrt();
@@ -93,9 +93,9 @@ impl Shape for Circle {
         }
     }
 
-    fn is_inside(&self, p: (f64, f64)) -> bool {
-        let x = p.0 - self.cx;
-        let y = p.1 - self.cy;
+    fn is_inside(&self, (px, py): (f64, f64)) -> bool {
+        let x = px - self.cx;
+        let y = py - self.cy;
         x * x + y * y < self.r * self.r
     }
 }
@@ -109,17 +109,17 @@ pub struct Plane {
 }
 
 impl Shape for Plane {
-    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection> {
+    fn intersect(&self, (px, py): (f64, f64), (dx, dy): (f64, f64)) -> Vec<Intersection> {
         let mut result: Vec<Intersection> = Vec::new();
-        let a = d.0 * self.nx + d.1 * self.ny;
+        let a = dx * self.nx + dy * self.ny;
         if a.abs() < EPSILON {
             result
         } else {
-            let b = (self.px - p.0) * self.nx + (self.py - p.1) * self.ny;
+            let b = (self.px - px) * self.nx + (self.py - py) * self.ny;
             let t = b / a;
             if t > EPSILON {
                 result.push(Intersection {
-                    point: (p.0 + d.0 * t, p.1 + d.1 * t),
+                    point: (px + dx * t, py + dy * t),
                     normal: (self.nx, self.ny),
                 });
             }
@@ -127,8 +127,8 @@ impl Shape for Plane {
         }
     }
 
-    fn is_inside(&self, p: (f64, f64)) -> bool {
-        (p.0 - self.px) * self.nx + (p.1 - self.py) * self.ny < 0.0
+    fn is_inside(&self, (px, py): (f64, f64)) -> bool {
+        (px - self.px) * self.nx + (py - self.py) * self.ny < 0.0
     }
 }
 
@@ -204,7 +204,7 @@ impl Polygon {
 }
 
 impl Shape for Polygon {
-    fn intersect(&self, p: (f64, f64), d: (f64, f64)) -> Vec<Intersection> {
+    fn intersect(&self, (px, py): (f64, f64), (dx, dy): (f64, f64)) -> Vec<Intersection> {
         let mut result: Vec<Intersection> = Vec::new();
         for i in 0..self.points.len() {
             let a = self.points[i];
@@ -213,25 +213,25 @@ impl Shape for Polygon {
             } else {
                 self.points[i + 1]
             };
-            let ax = a.0 - p.0;
-            let ay = a.1 - p.1;
-            let bx = b.0 - p.0;
-            let by = b.1 - p.1;
-            let product1 = ax * d.1 - d.0 * ay;
-            let product2 = bx * d.1 - d.0 * by;
+            let ax = a.0 - px;
+            let ay = a.1 - py;
+            let bx = b.0 - px;
+            let by = b.1 - py;
+            let product1 = ax * dy - dx * ay;
+            let product2 = bx * dy - dx * by;
             if product1 * product2 < 0.0 {
                 let nx = a.1 - b.1;
                 let ny = b.0 - a.0;
                 let len = (nx * nx + ny * ny).sqrt();
                 let nx = nx / len;
                 let ny = ny / len;
-                let c1 = d.0 * nx + d.1 * ny;
+                let c1 = dx * nx + dy * ny;
                 if c1.abs() > EPSILON {
-                    let c2 = (a.0 - p.0) * nx + (a.1 - p.1) * ny;
+                    let c2 = (a.0 - px) * nx + (a.1 - py) * ny;
                     let t = c2 / c1;
                     if t > EPSILON {
                         result.push(Intersection {
-                            point: (p.0 + d.0 * t, p.1 + d.1 * t),
+                            point: (px + dx * t, py + dy * t),
                             normal: (nx, ny),
                         });
                     }
@@ -241,7 +241,7 @@ impl Shape for Polygon {
         result
     }
 
-    fn is_inside(&self, p: (f64, f64)) -> bool {
+    fn is_inside(&self, (px, py): (f64, f64)) -> bool {
         for i in 0..self.points.len() {
             let a = self.points[i];
             let b = if i + 1 == self.points.len() {
@@ -251,8 +251,8 @@ impl Shape for Polygon {
             };
             let ax = b.0 - a.0;
             let ay = b.1 - a.1;
-            let bx = p.0 - a.0;
-            let by = p.1 - a.1;
+            let bx = px - a.0;
+            let by = py - a.1;
             if ax * by - bx * ay >= 0.0 {
                 return false;
             }
