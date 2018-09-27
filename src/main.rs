@@ -4,172 +4,24 @@ extern crate pbr;
 extern crate rand;
 extern crate rayon;
 extern crate serde;
+#[macro_use]
+extern crate serde_derive;
 extern crate serde_json;
 extern crate time;
 
-#[macro_use]
-extern crate serde_derive;
-
-mod element;
 mod calculate;
-mod shapes;
+mod config;
+mod element;
 mod render;
+mod shapes;
 
 use std::fs::File;
 use std::process;
 
 use clap::{Arg, App};
-use element::Color;
-use shapes::*;
-use render::render as r;
-use render::{Entity, Scene};
 
-
-#[derive(Serialize, Deserialize)]
-struct Config {
-    enable: bool,
-    out: String,
-    width: u32,
-    height: u32,
-    stratification: u32,
-    max_depth: u32,
-    scenes: Vec<EntityJson>,
-}
-
-#[derive(Serialize, Deserialize)]
-struct EntityJson {
-    shape: ShapeJson,
-    emissive: ColorJson,
-    reflectivity: f64,
-    eta: f64,
-    absorption: ColorJson,
-}
-
-#[derive(Serialize, Deserialize)]
-enum ShapeJson {
-    #[serde(rename = "directional_light")]
-    DirectionalLight { d: f64, nx: f64, ny: f64 },
-    #[serde(rename = "polygon")]
-    Polygon(PolygonJson),
-    #[serde(rename = "circle")]
-    Circle(CircleJson),
-    #[serde(rename = "plane")]
-    Plane { px: f64, py: f64, nx: f64, ny: f64 },
-    #[serde(rename = "union")]
-    Union(Vec<Box<ShapeJson>>),
-    #[serde(rename = "intersect")]
-    Intersect(Vec<Box<ShapeJson>>),
-    #[serde(rename = "complement")]
-    Complement(Box<ShapeJson>),
-}
-
-#[derive(Serialize, Deserialize)]
-enum PolygonJson {
-    #[serde(rename = "points")]
-    Points(Vec<(f64, f64)>),
-    #[serde(rename = "regular")]
-    Regular { cx: f64, cy: f64, r: f64, n: u32, e: f64 },
-    #[serde(rename = "star")]
-    Star { cx: f64, cy: f64, r: f64, n: u32, e: f64 },
-    #[serde(rename = "rectangle")]
-    Rectangle { cx: f64, cy: f64, e: f64, sx: f64, sy: f64 },
-}
-
-#[derive(Serialize, Deserialize)]
-struct CircleJson {
-    cx: f64,
-    cy: f64,
-    r: f64,
-}
-
-#[derive(Serialize, Deserialize)]
-enum ColorJson {
-    #[serde(rename = "grey")]
-    Grey(f64),
-    #[serde(rename = "black")]
-    Black(bool),
-    #[serde(rename = "rgb")]
-    Rgb { r: f64, g: f64, b: f64 },
-}
-
-#[allow(dead_code)]
-fn get_color(color_json: ColorJson) -> Color {
-    match color_json {
-        ColorJson::Grey(n) => Color::grey(n),
-        ColorJson::Black(_) => Color::black(),
-        ColorJson::Rgb { r, g, b } => Color { r, g, b },
-    }
-}
-
-#[allow(dead_code)]
-fn get_shape(shape_json: ShapeJson) -> Box<Shape + Sync> {
-    let shape: Box<Shape + Sync> = match shape_json {
-        ShapeJson::DirectionalLight { d, nx, ny } => {
-            Box::new(DirectionalLight {
-                d,
-                nx: -nx,
-                ny: -ny,
-            })
-        }
-        ShapeJson::Polygon(mut pj) => {
-            match pj {
-                PolygonJson::Points(points) => {
-                    Box::new(Polygon::new(points))
-                }
-                PolygonJson::Regular { cx, cy, r, n, e } => {
-                    Box::new(Polygon::regular(cx, cy, r, n, e))
-                }
-                PolygonJson::Star { cx, cy, r, n, e } => {
-                    Box::new(Polygon::star(cx, cy, r, n, e))
-                }
-                PolygonJson::Rectangle { cx, cy, e, sx, sy } => {
-                    Box::new(Polygon::rectangle(cx, cy, e, sx, sy))
-                }
-            }
-        }
-        ShapeJson::Circle(cj) => {
-            Box::new(Circle {
-                cx: cj.cx,
-                cy: cj.cy,
-                r: cj.r,
-            })
-        }
-        ShapeJson::Plane { px, py, nx, ny } => {
-            Box::new(Plane {
-                px,
-                py,
-                nx,
-                ny,
-            })
-        }
-        ShapeJson::Union(list) => {
-            let mut shapes: Vec<Box<Shape + Sync>> = Vec::new();
-            for item in list {
-                let shape = get_shape(*item);
-                shapes.push(shape);
-            }
-            Box::new(UnionShape {
-                c: shapes,
-            })
-        }
-        ShapeJson::Intersect(list) => {
-            let mut shapes: Vec<Box<Shape + Sync>> = Vec::new();
-            for item in list {
-                let shape = get_shape(*item);
-                shapes.push(shape);
-            }
-            Box::new(IntersectShape {
-                c: shapes,
-            })
-        }
-        ShapeJson::Complement(a) => {
-            Box::new(ComplementShape {
-                a: get_shape(*a),
-            })
-        }
-    };
-    shape
-}
+use config::Config;
+use render::{Entity, Scene, render as r};
 
 fn main() {
     args_check();
@@ -209,16 +61,10 @@ fn args_check() {
         }
         println!("try to render image: {}", item.out);
 
+
         let mut entities: Vec<Entity> = Vec::new();
         for entity_json in item.scenes {
-            let mut entity = Entity {
-                shape: get_shape(entity_json.shape),
-                emissive: get_color(entity_json.emissive),
-                reflectivity: entity_json.reflectivity,
-                eta: entity_json.eta,
-                absorption: get_color(entity_json.absorption),
-            };
-            entities.push(entity);
+            entities.push(entity_json.get_entity());
         };
         let scene = Scene {
             entities,
