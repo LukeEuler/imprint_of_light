@@ -1,3 +1,4 @@
+extern crate clap;
 extern crate image;
 extern crate pbr;
 extern crate rand;
@@ -15,7 +16,9 @@ mod shapes;
 mod render;
 
 use std::fs::File;
+use std::process;
 
+use clap::{Arg, App};
 use element::Color;
 use shapes::*;
 use render::render as r;
@@ -169,7 +172,32 @@ fn get_shape(shape_json: ShapeJson) -> Box<Shape + Sync> {
 }
 
 fn main() {
-    let file = File::open("config.json").unwrap();
+    args_check();
+}
+
+fn args_check() {
+    let matches = App::new("imprint_of_light")
+        .version("0.1.0")
+        .author("Luke Euler <luke16times@gmail.com>")
+        .about("draw the light with shapes in 2D")
+        .arg(Arg::with_name("config")
+            .short("c")
+            .long("config")
+            .value_name("FILE")
+            .help("the config file for rendering images")
+            .default_value("config.json"))
+        .get_matches();
+
+    let config_file_name = matches.value_of("config").unwrap();
+
+    let file = match File::open(config_file_name) {
+        Ok(f) => f,
+        Err(e) => {
+            println!("{}: {}", config_file_name, e.to_string());
+            process::exit(1)
+        }
+    };
+
     let configs: Vec<Config> = serde_json::from_reader(file).unwrap();
 
     for item in configs {
