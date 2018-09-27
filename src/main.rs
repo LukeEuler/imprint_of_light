@@ -1,8 +1,10 @@
 extern crate image;
+extern crate pbr;
 extern crate rand;
 extern crate rayon;
 extern crate serde;
 extern crate serde_json;
+extern crate time;
 
 #[macro_use]
 extern crate serde_derive;
@@ -177,6 +179,7 @@ fn main() {
         if item.scenes.len() == 0 {
             continue;
         }
+        println!("try to render image: {}", item.out);
 
         let mut entities: Vec<Entity> = Vec::new();
         for entity_json in item.scenes {

@@ -1,10 +1,14 @@
 extern crate image;
+extern crate pbr;
 extern crate rand;
 extern crate rayon;
+extern crate time;
 
 use image::{ImageBuffer, Rgb, RgbImage};
+use pbr::ProgressBar;
 use rand::{Rng, ThreadRng};
 use rayon::prelude::{IntoParallelRefIterator, ParallelIterator};
+use time::now;
 
 use std::f64::consts::PI;
 use std::cmp::min;
@@ -174,6 +178,9 @@ fn render_point(scene: &Scene, stratification: u32, max_depth: u32, rng: &mut Th
 }
 
 pub fn render(scene: &Scene, (width, height): (u32, u32), stratification: u32, max_depth: u32) -> RgbImage {
+    let mut pb = ProgressBar::new(width as u64 * height as u64);
+    pb.format("[=>-]");
+    let begin = now();
     let mut img = ImageBuffer::from_pixel(width, height, Rgb([0u8, 0u8, 0u8]));
     let mut rng = rand::thread_rng();
     let min_edge = min(width, height);
@@ -186,7 +193,11 @@ pub fn render(scene: &Scene, (width, height): (u32, u32), stratification: u32, m
             let g = min((color.g * 255.0) as u32, 255) as u8;
             let b = min((color.b * 255.0) as u32, 255) as u8;
             img.put_pixel(x, y, Rgb([r, g, b]));
+            pb.inc();
         }
     }
+    pb.finish();
+    let end = now();
+    println!("{:?}", end - begin);
     img
 }
