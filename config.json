@@ -1,6 +1,69 @@
 [
   {
     "enable": false,
+    "out": "pics/delta.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": -0.1, "cy": 1.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": 1.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 7},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {
+              "intersect": [
+                {"circle": {"cx": 0.5, "cy": 0.65, "r": 0.25}},
+                {"complement": {"circle": {"cx": 0.5, "cy": 0.65, "r": 0.15}}}
+              ]
+            },
+            {
+              "polygon": {
+                "points": [
+                  [0.59, 0.53],
+                  [0.65, 0.45],
+                  [0.29, 0.18],
+                  [0.25, 0.275]
+                ]
+              }
+            },
+            {
+              "polygon": {
+                "points": [
+                  [0.25, 0.275],
+                  [0.7, 0.275],
+                  [0.7, 0.175],
+                  [0.3, 0.175],
+                  [0.25, 0.225]
+                ]
+              }
+            },
+            {"circle": {"cx": 0.7, "cy": 0.225, "r": 0.05}},
+            {"circle": {"cx": 0.3, "cy": 0.225, "r": 0.05}}
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.6,
+        "absorption": {"rgb": {"r": 5, "g": 0.5, "b": 0.5}}
+      }
+    ]
+  },
+  {
+    "enable": false,
     "out": "pics/wing.png",
     "width": 2880,
     "height": 2400,
