@@ -242,22 +242,29 @@ impl Shape for Polygon {
     }
 
     fn is_inside(&self, (px, py): (f64, f64)) -> bool {
+        let mut cross_count = 0;
         for i in 0..self.points.len() {
-            let a = self.points[i];
-            let b = if i + 1 == self.points.len() {
-                self.points[0]
-            } else {
-                self.points[i + 1]
-            };
-            let ax = b.0 - a.0;
-            let ay = b.1 - a.1;
-            let bx = px - a.0;
-            let by = py - a.1;
-            if ax * by - bx * ay >= 0.0 {
-                return false;
+            let (x0, y0) = self.points[i];
+            let mut j = i + 1;
+            if j >= self.points.len() {
+                j = 0
+            }
+            let (x1, y1) = self.points[j];
+
+            if (x1 - x0).abs() < EPSILON {
+                cross_count += 1;
+                continue;
+            }
+
+            let slope = (y1 - y0) as f64 / (x1 - x0) as f64;
+            let cond1 = (x0 <= px) && (px < x1);
+            let cond2 = (x1 <= px) && (px < x0);
+            let above = py < slope * (px - x0) + y0;
+            if (cond1 || cond2) && above {
+                cross_count += 1;
             }
         }
-        true
+        cross_count % 2 != 0
     }
 }
 
