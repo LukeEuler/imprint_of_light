@@ -1,6 +1,80 @@
 [
   {
     "enable": false,
+    "out": "pics/planets/mercury.png",
+    "width": 2048,
+    "height": 2048,
+    "stratification": 512,
+    "max_depth": 3,
+    "scenes": [
+      {
+        "shape": {
+          "union": [
+            {"circle": {"cx": -0.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": -0.1, "r": 0.05}},
+            {"circle": {"cx": -0.1, "cy": 1.1, "r": 0.05}},
+            {"circle": {"cx": 1.1, "cy": 1.1, "r": 0.05}}
+          ]
+        },
+        "emissive": {"grey": 7},
+        "reflectivity": 0,
+        "eta": 0,
+        "absorption": {"black": true}
+      },
+      {
+        "shape": {
+          "union": [
+            {
+              "intersect": [
+                {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.2}},
+                {"complement": {"circle": {"cx": 0.5, "cy": 0.5, "r": 0.15}}}
+              ]
+            },
+            {
+              "intersect": [
+                {"circle": {"cx": 0.5, "cy": 0.15, "r": 0.2}},
+                {"complement": {"circle": {"cx": 0.5, "cy": 0.15, "r": 0.15}}},
+                {
+                  "polygon": {
+                    "points": [
+                      [0.3, 0.35],
+                      [0.7, 0.35],
+                      [0.7, 0.15],
+                      [0.3, 0.15]
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "polygon": {
+                "points": [
+                  [0.475, 0.9],
+                  [0.525, 0.9],
+                  [0.525, 0.8],
+                  [0.675, 0.8],
+                  [0.675, 0.75],
+                  [0.525, 0.75],
+                  [0.525, 0.675],
+                  [0.475, 0.675],
+                  [0.475, 0.75],
+                  [0.325, 0.75],
+                  [0.325, 0.8],
+                  [0.475, 0.8]
+                ]
+              }
+            }
+          ]
+        },
+        "emissive": {"black": true},
+        "reflectivity": 0,
+        "eta": 1.6,
+        "absorption": {"rgb": {"r": 6.6, "g": 2.4, "b": 0.5}}
+      }
+    ]
+  },
+  {
+    "enable": false,
     "out": "pics/srivatsa.png",
     "width": 2048,
     "height": 2048,
