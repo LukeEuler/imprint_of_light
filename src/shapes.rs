@@ -252,6 +252,9 @@ impl Shape for Polygon {
             let (x1, y1) = self.points[j];
 
             if (x1 - x0).abs() < EPSILON {
+                if (px - x0) * (px - x1) > 0.0 {
+                    continue;
+                }
                 cross_count += 1;
                 continue;
             }
