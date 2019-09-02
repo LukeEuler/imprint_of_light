@@ -273,7 +273,7 @@ impl Shape for Polygon {
 
 #[allow(dead_code)]
 pub struct UnionShape {
-    pub c: Vec<Box<Shape + Sync>>,
+    pub c: Vec<Box<dyn Shape + Sync>>,
 }
 
 impl Shape for UnionShape {
@@ -322,7 +322,7 @@ impl Shape for UnionShape {
 
 #[allow(dead_code)]
 pub struct IntersectShape {
-    pub c: Vec<Box<Shape + Sync>>,
+    pub c: Vec<Box<dyn Shape + Sync>>,
 }
 
 impl Shape for IntersectShape {
@@ -371,7 +371,7 @@ impl Shape for IntersectShape {
 
 #[allow(dead_code)]
 pub struct ComplementShape {
-    pub a: Box<Shape + Sync>,
+    pub a: Box<dyn Shape + Sync>,
 }
 
 impl Shape for ComplementShape {
@@ -393,7 +393,7 @@ impl Shape for ComplementShape {
 
 #[allow(dead_code)]
 impl ComplementShape {
-    fn new(a: Box<Shape + Sync>) -> ComplementShape {
+    fn new(a: Box<dyn Shape + Sync>) -> ComplementShape {
         ComplementShape {
             a
         }
